@@ -7,9 +7,10 @@ const authorizationUrl = (url, appId, callback, scope, responseType = 'token') =
   client_id=${appId}`.replace(/\s+/g, '')
 
 export default class {
-  constructor(clientId, callback, authUrl, tokenUrl) {
+  constructor(clientId, clientSecret, callback, authUrl, tokenUrl) {
     this.authenticate = this.authenticate.bind(this)
     this.clientId = clientId
+    this.clientSecret = clientSecret
     this.callback = callback
     this.authUrl = authUrl
     this.tokenUrl = tokenUrl
@@ -25,6 +26,7 @@ export default class {
         const tokenRequest = {
           code: authCode,
           client_id: this.clientId,
+          client_secret: this.clientSecret,
           redirect_uri: this.callback,
           grant_type: 'authorization_code'
         }
