@@ -1,6 +1,6 @@
 import { Linking } from 'react-native'
 
-const authorizationUrl = (url, appId, callback, scope, responseType = 'code') =>
+const authorizationUrl = (url, appId, callback, scope, responseType = 'token') =>
   `${url}?scope=${encodeURIComponent(scope)}&
   redirect_uri=${encodeURIComponent(callback)}&
   response_type=${responseType}&
@@ -48,7 +48,7 @@ export default class {
         Linking.removeEventListener('url', handleUrl)
       }
       Linking.addEventListener('url', handleUrl)
-      Linking.openURL(authorizationUrl(this.authUrl, this.clientId, this.callback, 'code'))
+      Linking.openURL(authorizationUrl(this.authUrl, this.clientId, this.callback, '', 'code'))
     })
   }
 }
