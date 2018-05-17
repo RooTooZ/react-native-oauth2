@@ -1,6 +1,6 @@
 import { Linking } from 'react-native'
 
-const authorizationUrl = (url, appId, callback, scope, responseType = 'token') =>
+const authorizationUrl = (url, appId, callback, scope, responseType = 'code') =>
   `${url}?scope=${encodeURIComponent(scope)}&
   redirect_uri=${encodeURIComponent(callback)}&
   response_type=${responseType}&
